@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Salmo Ball Z</title>
+  <style>
+    body {
+      text-align: center;
+      background-color: #000;
+      color: white;
+      font-family: sans-serif;
+    }
+
+    #image-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    #salmo-texto {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px #000;
+      width: 90%;
+    }
+
+    img {
+      max-width: 90vw;
+      max-height: 80vh;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Dragon Salmo Z</h1>
+  <div id="image-container">
+    <img id="goku-image" src="" alt="Imagem do Goku">
+    <div id="salmo-texto"></div>
+  </div>
+
+  <br><br>
+  <button onclick="gerarImagemESalmo()" style="
+  font-size: 32px;
+  padding: 12px 20px;
+  border-radius: 50%;
+  background-color: #f9f9f9;
+  border: 2px solid #ccc;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+">
+  🙏
+</button>
+
+  
+  <script>
+    const imagens = [
+        "img/2.jpg",
+        "img/3.gif",
+        "img/4.jpg",
+        "img/5.jpg",
+        "img/6.jpg",
+        "img/7.jpg",
+        "img/8.png",
+        "img/9.jpg",
+        "img/10.png",
+        "img/11.jpg",
+        "img/12.png",
+        "img/13.jpg",
+        "img/14.jpg",
+        "img/15.jpg",
+        "img/16.png",
+        "img/17.jpg",
+        "img/18.jpg",
+        "img/19.jpg",
+        "img/20.jpg",
+        "img/21.webp",
+        "img/22.jpg",
+        "img/23.jpg",
+        "img/24.jpg","img/25.jpg", "img/26.jpg","img/27.jpg","img/28.webp","img/29.webp", "img/30.jpg", "img/31.jpg",
+        "img/32.jpg","img/33.webp", "img/34.jpg"
+    ];
+
+    const salmos = [
+      "Salmo 1:1 - Bem-aventurado o homem que não anda segundo o conselho dos ímpios.",
+  "Salmo 1:2 - Antes tem o seu prazer na lei do Senhor.",
+  "Salmo 1:3 - Será como árvore plantada junto a ribeiros de águas.",
+  "Salmo 4:8 - Em paz me deito e logo adormeço, pois só tu, Senhor, me fazes viver em segurança.",
+  "Salmo 5:3 - Pela manhã ouves a minha voz, ó Senhor.",
+  "Salmo 9:1 - Louvarei ao Senhor de todo o meu coração.",
+  "Salmo 9:9 - O Senhor é refúgio para os oprimidos.",
+  "Salmo 16:8 - Tenho sempre o Senhor diante de mim.",
+  "Salmo 18:2 - O Senhor é a minha rocha, a minha fortaleza e o meu libertador.",
+  "Salmo 19:1 - Os céus proclamam a glória de Deus.",
+  "Salmo 23:1 - O Senhor é o meu pastor; nada me faltará.",
+  "Salmo 23:4 - Ainda que eu ande pelo vale da sombra da morte, não temerei mal algum.",
+  "Salmo 24:1 - Do Senhor é a terra e tudo o que nela existe.",
+  "Salmo 25:4 - Mostra-me os teus caminhos, Senhor; ensina-me as tuas veredas.",
+  "Salmo 27:1 - O Senhor é a minha luz e a minha salvação; a quem temerei?",
+  "Salmo 27:4 - Uma coisa pedi ao Senhor e a buscarei.",
+  "Salmo 28:7 - O Senhor é a minha força e o meu escudo.",
+  "Salmo 30:5 - O choro pode durar uma noite, mas a alegria vem pela manhã.",
+  "Salmo 31:24 - Sede fortes, e revigore-se o vosso coração, vós todos que esperais no Senhor.",
+  "Salmo 32:7 - Tu és o meu esconderijo; tu me preservas da angústia.",
+  "Salmo 33:12 - Feliz é a nação cujo Deus é o Senhor.",
+  "Salmo 34:7 - O anjo do Senhor acampa-se ao redor dos que o temem.",
+  "Salmo 34:8 - Provai e vede que o Senhor é bom.",
+  "Salmo 34:18 - Perto está o Senhor dos que têm o coração quebrantado.",
+  "Salmo 37:4 - Deleita-te também no Senhor, e ele concederá o que deseja o teu coração.",
+  "Salmo 37:5 - Entrega o teu caminho ao Senhor; confia nele, e o mais ele fará.",
+  "Salmo 37:23 - Os passos de um homem bom são confirmados pelo Senhor.",
+  "Salmo 40:1 - Esperei com paciência no Senhor, e ele se inclinou para mim.",
+  "Salmo 42:1 - Assim como o cervo anseia por águas correntes, a minha alma anseia por ti, ó Deus.",
+  "Salmo 46:1 - Deus é o nosso refúgio e fortaleza, socorro bem presente na angústia.",
+  "Salmo 46:10 - Aquietai-vos e sabei que eu sou Deus.",
+  "Salmo 51:10 - Cria em mim, ó Deus, um coração puro.",
+  "Salmo 56:3 - Em me vindo o temor, hei de confiar em ti.",
+  "Salmo 61:2 - Quando o meu coração estiver desfalecido, leva-me ao rochedo que é mais alto do que eu.",
+  "Salmo 62:1 - Somente em Deus, ó minha alma, espera silenciosa.",
+  "Salmo 63:1 - Ó Deus, tu és o meu Deus, de madrugada te buscarei.",
+  "Salmo 66:20 - Bendito seja Deus, que não rejeitou a minha oração.",
+  "Salmo 68:19 - Bendito seja o Senhor, que dia a dia leva o nosso fardo.",
+  "Salmo 71:1 - Em ti, Senhor, me refugiei; jamais serei humilhado.",
+  "Salmo 73:26 - A minha carne e o meu coração podem fraquejar; Deus é a fortaleza do meu coração.",
+  "Salmo 84:10 - Mais vale um dia nos teus átrios do que mil em outro lugar.",
+  "Salmo 85:10 - A misericórdia e a verdade se encontraram.",
+  "Salmo 86:5 - Tu, Senhor, és bom e pronto a perdoar.",
+  "Salmo 89:1 - Cantarei para sempre as benignidades do Senhor.",
+  "Salmo 90:12 - Ensina-nos a contar os nossos dias.",
+  "Salmo 91:1 - Aquele que habita no esconderijo do Altíssimo descansará à sombra do Onipotente.",
+  "Salmo 91:2 - Direi do Senhor: Ele é o meu Deus, o meu refúgio, a minha fortaleza.",
+  "Salmo 91:7 - Mil cairão ao teu lado, e dez mil à tua direita, mas tu não serás atingido.",
+  "Salmo 92:1 - Bom é render graças ao Senhor.",
+  "Salmo 94:19 - Quando os cuidados do meu coração se multiplicam, as tuas consolações me alegram.",
+  "Salmo 95:6 - Vinde, adoremos e prostremo-nos; ajoelhemos diante do Senhor.",
+  "Salmo 96:3 - Anunciai entre as nações a sua glória.",
+  "Salmo 97:1 - O Senhor reina; regozije-se a terra.",
+  "Salmo 98:4 - Celebrai com júbilo ao Senhor, todos os moradores da terra.",
+  "Salmo 100:4 - Entrai pelas portas dele com gratidão.",
+  "Salmo 103:1 - Bendize, ó minha alma, ao Senhor.",
+  "Salmo 103:8 - Misericordioso e piedoso é o Senhor.",
+  "Salmo 103:17 - A misericórdia do Senhor é de eternidade a eternidade.",
+  "Salmo 104:24 - Quão variadas são, Senhor, as tuas obras!",
+  "Salmo 105:4 - Buscai o Senhor e a sua força; buscai a sua face continuamente.",
+  "Salmo 106:1 - Louvai ao Senhor, porque ele é bom.",
+  "Salmo 107:1 - Rendei graças ao Senhor, porque ele é bom.",
+  "Salmo 108:1 - Firme está o meu coração, ó Deus.",
+  "Salmo 111:10 - O temor do Senhor é o princípio da sabedoria.",
+  "Salmo 112:7 - Não teme más notícias; seu coração é firme, confiante no Senhor.",
+  "Salmo 113:3 - Desde o nascimento do sol até o ocaso, louvado seja o nome do Senhor.",
+  "Salmo 116:1 - Amo ao Senhor, porque ele ouviu a minha voz.",
+  "Salmo 117:1 - Louvai ao Senhor, todas as nações.",
+  "Salmo 118:6 - O Senhor está comigo, não temerei.",
+  "Salmo 118:24 - Este é o dia que fez o Senhor; regozijemo-nos e alegremo-nos nele.",
+  "Salmo 119:11 - Escondi a tua palavra no meu coração.",
+  "Salmo 119:105 - Lâmpada para os meus pés é a tua palavra.",
+  "Salmo 121:1 - Elevo os meus olhos para os montes: de onde me virá o socorro?",
+  "Salmo 121:2 - O meu socorro vem do Senhor.",
+  "Salmo 122:1 - Alegrei-me quando me disseram: Vamos à casa do Senhor.",
+  "Salmo 124:8 - O nosso socorro está no nome do Senhor.",
+  "Salmo 125:1 - Os que confiam no Senhor são como o monte Sião.",
+  "Salmo 126:5 - Os que semeiam em lágrimas, com cânticos de júbilo colherão.",
+  "Salmo 127:1 - Se o Senhor não edificar a casa, em vão trabalham os que a edificam.",
+  "Salmo 128:1 - Bem-aventurado aquele que teme ao Senhor.",
+  "Salmo 130:5 - Aguardo o Senhor, a minha alma o aguarda.",
+  "Salmo 133:1 - Oh! quão bom e quão suave é que os irmãos vivam em união.",
+  "Salmo 135:6 - Tudo quanto o Senhor quer, ele o faz.",
+  "Salmo 138:3 - No dia em que clamei, me escutaste.",
+  "Salmo 139:1 - Senhor, tu me sondaste e me conheces.",
+  "Salmo 139:14 - Eu te louvarei, porque de um modo assombroso e maravilhoso fui formado.",
+  "Salmo 140:12 - Sei que o Senhor sustentará a causa do aflito.",
+  "Salmo 143:10 - Ensina-me a fazer a tua vontade, pois tu és o meu Deus.",
+  "Salmo 144:1 - Bendito seja o Senhor, minha rocha.",
+  "Salmo 145:18 - Perto está o Senhor de todos os que o invocam.",
+  "Salmo 146:5 - Feliz é aquele que tem o Deus de Jacó por seu auxílio.",
+  "Salmo 147:3 - Ele cura os quebrantados de coração.",
+  "Salmo 148:13 - Exaltem o nome do Senhor, pois só o seu nome é excelso.",
+  "Salmo 149:4 - O Senhor se agrada do seu povo.",
+  "Salmo 150:6 - Todo ser que respira louve ao Senhor."
+    ];
+
+    function gerarImagemESalmo() {
+      const imagem = imagens[Math.floor(Math.random() * imagens.length)];
+      const salmo = salmos[Math.floor(Math.random() * salmos.length)];
+
+      document.getElementById("goku-image").src = imagem;
+      document.getElementById("salmo-texto").innerText = salmo;
+    }
+
+    window.onload = gerarImagemESalmo;
+  </script>
+
+</body>
+</html>
